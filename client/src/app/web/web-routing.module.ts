@@ -33,11 +33,11 @@ const routes: Routes = [
             },
             {
                 path: 'setting',
-                loadChildren: './web/module/setting/setting.module#SettingModule',
+                loadChildren: './module/setting/setting.module#SettingModule',
             },
             {
                 path: 'custom',
-                loadChildren: './web/module/custom/custom.module#CustomModule',
+                loadChildren: './module/custom/custom.module#CustomModule',
             }
         ]
 
