@@ -1,0 +1,30 @@
+<div class="page-title">
+    <span class="title">快递费管理</span>
+    <button nz-button nzType="primary" routerLink="new">新建</button>
+</div>
+<nz-table #basicTable [nzData]="dataSet">
+    <thead>
+        <tr>
+            <th>区域</th>
+            <th>首重(kg)</th>
+            <th>首费(元)</th>
+            <th>续重(kg)</th>
+            <th>续费(元)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data">
+            <td>{{data.area}}</td>
+            <td>{{data.firstKg}}</td>
+            <td>{{data.firstCost}}</td>
+            <td>{{data.continuedKg}}</td>
+            <td>{{data.continuedCost}}</td>
+            <td>
+                <a routerLink="edit/1">编辑</a>
+                <nz-divider nzType="vertical"></nz-divider>
+                <a nz-popconfirm nzTitle="确定删除?" (nzOnConfirm)="confirm()" (nzOnCancel)="cancel()">删除</a>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

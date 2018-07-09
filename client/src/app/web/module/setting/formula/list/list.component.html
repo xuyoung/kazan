@@ -1,0 +1,24 @@
+<div class="page-title">
+    <span class="title">公式管理</span>
+    <button nz-button nzType="primary" routerLink="new">新建</button>
+</div>
+<nz-table #basicTable [nzData]="dataSet">
+    <thead>
+        <tr>
+            <th>产品</th>
+            <th>公式</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data">
+            <td>{{data.product}}</td>
+            <td>{{data.formula}}</td>
+            <td>
+                <a routerLink="edit/1">编辑</a>
+                <nz-divider nzType="vertical"></nz-divider>
+                <a>删除</a>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

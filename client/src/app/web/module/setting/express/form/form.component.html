@@ -1,0 +1,42 @@
+<form nz-form [formGroup]="validateForm">
+    <div class="page-title">
+        <span class="title">新建快递费{{id}}</span>
+        <div>
+            <button nz-button type="submit" (click)="submitForm($event,validateForm.value)" nzType="primary" [nzLoading]="isLoading">保存</button>
+            <button nz-button routerLink="/web/main/setting/express">返回</button>
+        </div>
+    </div>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>区域</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+            <nz-select formControlName="area" nzMode="multiple" nzPlaceHolder="选择区域">
+                <nz-option *ngFor="let province of provinceInfo" [nzLabel]="province" [nzValue]="province"></nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>首重(kg)</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+            <input nz-input formControlName="firstKg" placeholder="输入首重" type="text">
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>首费(元)</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+            <input nz-input formControlName="firstCost" placeholder="输入首费" type="text">
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>续重(kg)</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+            <input nz-input formControlName="continuedKg" placeholder="输入续重" type="text">
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>续费(元)</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+            <input nz-input formControlName="continuedCost" placeholder="输入续费" type="text">
+        </nz-form-control>
+    </nz-form-item>
+</form>

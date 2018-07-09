@@ -1,0 +1,35 @@
+<nz-layout class="layout">
+    <nz-header>
+        <div class="logo"></div>
+        <ul nz-menu [nzTheme]="'dark'" class="float-right" [nzMode]="'horizontal'" style="line-height: 64px;">
+            <li nz-menu-item>锁定</li>
+            <li nz-menu-item>个人中心</li>
+            <li nz-menu-item routerLink="/web/login">退出</li>
+        </ul>
+    </nz-header>
+    <nz-layout>
+        <nz-sider [nzWidth]="200" [style.height.px]="windowHeight" style="overflow-y: auto;background:#fff;">
+            <ul nz-menu [nzMode]="'inline'" style="height:100%">
+                <li nz-submenu [nzOpen]="true">
+                    <span title>
+                        <i class="anticon anticon-setting"></i>系统管理</span>
+                    <ul>
+                        <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/setting/user">用户管理</li>
+                        <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/setting/role">角色管理</li>
+                        <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/setting/shell-fabric">面料管理</li>
+                        <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/setting/product">产品管理</li>
+                        <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/setting/formula">公式管理</li>
+                        <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/setting/express">快递费管理</li>
+                        <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/setting/craft">工艺管理</li>
+                    </ul>
+                </li>
+                <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/custom">定制管理</li>
+            </ul>
+        </nz-sider>
+        <nz-layout style="padding:10px;">
+            <nz-content [style.height.px]="windowHeight-20" style="background:#fff; padding: 10px; overflow-y: auto;">
+                <router-outlet></router-outlet>
+            </nz-content>
+        </nz-layout>
+    </nz-layout>
+</nz-layout>

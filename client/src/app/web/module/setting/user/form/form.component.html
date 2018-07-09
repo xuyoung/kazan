@@ -1,0 +1,52 @@
+<div class="page-title">
+    <span class="title">新建用户{{id}}</span>
+    <div>
+        <button nz-button nzType="primary" routerLink="new">保存</button>
+        <button nz-button routerLink="../">返回</button>
+    </div>
+</div>
+
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>账号</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback>
+            <input nz-input formControlName="userName" placeholder="请输入账号">
+            <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors || validateForm.get('userName').pending ">
+                <ng-container *ngIf="validateForm.get('userName').hasError('required')">
+                    Please input your username!
+                </ng-container>
+                <ng-container *ngIf="validateForm.get('userName').hasError('duplicated')">
+                    The username is redundant!
+                </ng-container>
+                <ng-container *ngIf="validateForm.get('userName').pending">
+                    Validating...
+                </ng-container>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>姓名</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback>
+            <input nz-input formControlName="email" placeholder="请输入姓名" type="text">
+            <nz-form-explain *ngIf="validateForm.get('email').dirty&&validateForm.get('email').errors">
+                <ng-container *ngIf="validateForm.get('email').hasError('email')">
+                    The input is not valid E-mail!
+                </ng-container>
+                <ng-container *ngIf="validateForm.get('email').hasError('required')">
+                    Please input your E-mail!
+                </ng-container>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>角色</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+            <nz-select formControlName="comment" nzAllowClear nzPlaceHolder="Choose">
+                <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+                <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
+            </nz-select>
+            <nz-form-explain *ngIf="validateForm.get('comment').dirty&&validateForm.get('comment').hasError('required')">Please write something here!</nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+</form>

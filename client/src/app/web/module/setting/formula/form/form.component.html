@@ -1,0 +1,23 @@
+<div class="page-title">
+    <span class="title">新建公式{{id}}</span>
+    <div>
+        <button nz-button nzType="primary" (click)="save()" [nzLoading]="isLoading">保存</button>
+        <button nz-button routerLink="../">返回</button>
+    </div>
+</div>
+<nz-select style="width:200px;margin-bottom:10px;" [(ngModel)]="selectedValue" nzAllowClear nzPlaceHolder="选择产品">
+    <nz-option nzValue="jack" nzLabel="飘窗垫"></nz-option>
+    <nz-option nzValue="lucy" nzLabel="立体沙发套"></nz-option>
+</nz-select>
+<nz-select style="width:200px;margin-bottom:10px;margin-left:10px;" [(ngModel)]="selectedValue" nzAllowClear nzPlaceHolder="选择布号">
+    <nz-option nzValue="jack" nzLabel="飘窗垫"></nz-option>
+    <nz-option nzValue="lucy" nzLabel="立体沙发套"></nz-option>
+</nz-select>
+<div nz-row nzGutter="16">
+    <div nz-col class="gutter-row" nzSpan="3" *ngFor="let info of formulaInfo">
+        <div class="gutter-box">
+            <div class="text-align-center line-height-32 font-weight-bold">{{info.title}}</div>
+            <input [readonly]="!info.type" [disabled]="!info.type" nz-input [(ngModel)]="myInfo[info.key]" type="number">
+        </div>
+    </div>
+</div>

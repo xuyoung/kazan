@@ -1,0 +1,26 @@
+<div class="page-title">
+    <span class="title">用户管理</span>
+    <button nz-button nzType="primary" routerLink="new">新建用户</button>
+</div>
+<nz-table #basicTable [nzData]="dataSet">
+    <thead>
+        <tr>
+            <th>账号</th>
+            <th>姓名</th>
+            <th>角色</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data">
+            <td>{{data.name}}</td>
+            <td>{{data.age}}</td>
+            <td>{{data.address}}</td>
+            <td>
+                <a routerLink="edit/1">编辑</a>
+                <nz-divider nzType="vertical"></nz-divider>
+                <a>删除</a>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

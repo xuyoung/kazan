@@ -1,0 +1,100 @@
+<form nz-form [formGroup]="validateForm">
+    <div class="page-title">
+        <span class="title">新建面料{{id}}</span>
+        <div>
+            <button nz-button type="submit" (click)="submitForm($event,validateForm.value)" nzType="primary" [nzLoading]="isLoading">保存</button>
+            <button nz-button routerLink="/web/main/setting/express">返回</button>
+        </div>
+    </div>
+
+    <fieldset>
+        <legend>基本信息</legend>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>图片</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+                <nz-upload class="avatar-uploader" nzAction="https://jsonplaceholder.typicode.com/posts/" nzName="avatar" nzListType="picture-card"
+                    [nzShowUploadList]="false" [nzBeforeUpload]="beforeUpload" (nzChange)="handleChange($event)">
+                    <ng-container *ngIf="!avatarUrl">
+                        <i class="anticon anticon-plus"></i>
+                        <div class="ant-upload-text">Upload</div>
+                    </ng-container>
+                    <img *ngIf="avatarUrl" [src]="avatarUrl" class="avatar">
+                </nz-upload>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>品名</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+                <input nz-input formControlName="firstKg" placeholder="输入首重" type="text">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>型号</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+                <input nz-input formControlName="firstCost" placeholder="输入首费" type="text">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>材质</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+                <input nz-input formControlName="continuedKg" placeholder="输入续重" type="text">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>门幅</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+                <input nz-input formControlName="continuedCost" placeholder="输入续费" type="text">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>布号</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+                <input nz-input formControlName="continuedCost" placeholder="输入续费" type="text">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>花距（横向）</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+                <input nz-input formControlName="continuedCost" placeholder="输入续费" type="text">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>花距（纵向）</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+                <input nz-input formControlName="continuedCost" placeholder="输入续费" type="text">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>面料说明</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+                <input nz-input formControlName="continuedCost" placeholder="输入续费" type="text">
+            </nz-form-control>
+        </nz-form-item>
+    </fieldset>
+    <fieldset>
+        <legend>价格信息</legend>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>默认价格</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+                <input nz-input formControlName="continuedCost" placeholder="输入续费" type="text">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item *ngFor="let control of controlArray;let i = index">
+            <nz-form-label [nzSpan]="7" [nzFor]="control.controlInstance">
+                <nz-select formControlName="continuedCost" style="width:50%;" nzAllowClear nzPlaceHolder="选择产品">
+                    <nz-option [nzLabel]="'Http://'" [nzValue]="'Http://'"></nz-option>
+                    <nz-option [nzLabel]="'Https://'" [nzValue]="'Https://'"></nz-option>
+                </nz-select>
+            </nz-form-label>
+            <nz-form-control [nzSpan]="12">
+                <input type="text" nz-input formControlName="continuedCost">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control [nzXs]="{span:24,offset:0}" [nzSm]="{span:20,offset:4}">
+                <button nz-button nzType="dashed" style="width:60%" (click)="addField($event)">
+                    <i class="anticon anticon-plus"></i> 添加价格</button>
+            </nz-form-control>
+        </nz-form-item>
+    </fieldset>
+</form>
