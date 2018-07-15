@@ -11,10 +11,12 @@ import { ListComponent as ExpressListComponent } from './express/list/list.compo
 import { FormComponent as ExpressFormComponent } from './express/form/form.component';
 import { ListComponent as FormulaListComponent } from './formula/list/list.component';
 import { FormComponent as FormulaFormComponent } from './formula/form/form.component';
-import { ListComponent as ProductListComponent } from './product/list/list.component';
-import { FormComponent as ProductFormComponent } from './product/form/form.component';
+import { CategoryComponent } from './product/category/category.component';
+import { PropertyComponent } from './product/property/property.component';
 import { ListComponent as ShellFabricListComponent } from './shell-fabric/list/list.component';
 import { FormComponent as ShellFabricFormComponent } from './shell-fabric/form/form.component';
+import { ListComponent as CraftListComponent } from './craft/list/list.component';
+import { FormComponent as CraftFormComponent } from './craft/form/form.component';
 
 
 
@@ -82,16 +84,12 @@ const routes: Routes = [{
 {
     path: 'product',
     children: [{
-        path: '',
-        component: ProductListComponent
+        path: 'category',
+        component: CategoryComponent
     },
     {
-        path: 'new',
-        component: ProductFormComponent
-    },
-    {
-        path: 'edit/:id',
-        component: ProductFormComponent
+        path: 'property',
+        component: PropertyComponent
     }]
 },
 {
@@ -107,6 +105,21 @@ const routes: Routes = [{
     {
         path: 'edit/:id',
         component: ShellFabricFormComponent
+    }]
+},
+{
+    path: 'craft',
+    children: [{
+        path: '',
+        component: CraftListComponent
+    },
+    {
+        path: 'new',
+        component: CraftFormComponent
+    },
+    {
+        path: 'edit/:id',
+        component: CraftFormComponent
     }]
 }];
 

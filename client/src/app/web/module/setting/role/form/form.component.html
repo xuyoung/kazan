@@ -1,3 +1,50 @@
-<p>
-  form works!
-</p>
+<div class="page-title">
+    <span class="title">新建角色{{id}}</span>
+    <div>
+        <button nz-button nzType="primary" (click)="save()" [nzLoading]="isLoading">保存</button>
+        <button nz-button routerLink="../">返回</button>
+    </div>
+</div>
+
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>角色名称</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback>
+            <input nz-input formControlName="userName" placeholder="请输入角色名称">
+            <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors || validateForm.get('userName').pending ">
+                <ng-container *ngIf="validateForm.get('userName').hasError('required')">
+                    角色名称不能为空
+                </ng-container>
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>角色权限</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+            <h4>订单管理</h4>
+            <div>
+                <label nz-checkbox formControlName="userName">新建订单</label>
+                <label nz-checkbox formControlName="userName">导出订单</label>
+                <label nz-checkbox formControlName="userName">导出Excel</label>
+                <label nz-checkbox formControlName="userName">打印</label>
+                <label nz-checkbox formControlName="userName">新建订单</label>
+                <label nz-checkbox formControlName="userName">导出订单</label>
+                <label nz-checkbox formControlName="userName">导出Excel</label>
+                <label nz-checkbox formControlName="userName">打印</label>
+                <label nz-checkbox formControlName="userName">新建订单</label>
+                <label nz-checkbox formControlName="userName">导出订单</label>
+                <label nz-checkbox formControlName="userName">导出Excel</label>
+                <label nz-checkbox formControlName="userName">打印</label>
+                <label nz-checkbox formControlName="userName">新建订单</label>
+                <label nz-checkbox formControlName="userName">导出订单</label>
+                <label nz-checkbox formControlName="userName">导出Excel</label>
+                <label nz-checkbox formControlName="userName">打印</label>
+                <label nz-checkbox formControlName="userName">新建订单</label>
+                <label nz-checkbox formControlName="userName">导出订单</label>
+                <label nz-checkbox formControlName="userName">导出Excel</label>
+                <label nz-checkbox formControlName="userName">打印</label>
+            </div>
+
+        </nz-form-control>
+    </nz-form-item>
+</form>

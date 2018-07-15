@@ -1,29 +1,55 @@
 <nz-layout class="layout">
     <nz-header>
         <div class="logo"></div>
-        <ul nz-menu [nzTheme]="'dark'" class="float-right" [nzMode]="'horizontal'" style="line-height: 64px;">
-            <li nz-menu-item>锁定</li>
+        <ul nz-menu [nzSelectable]="false" [nzTheme]="'dark'" class="float-right" [nzMode]="'horizontal'" style="line-height: 64px;">
+            <li nz-menu-item>
+                <header-lock></header-lock>
+            </li>
             <li nz-menu-item>个人中心</li>
-            <li nz-menu-item routerLink="/web/login">退出</li>
+            <li nz-menu-item (click)="quit()">退出</li>
         </ul>
     </nz-header>
     <nz-layout>
         <nz-sider [nzWidth]="200" [style.height.px]="windowHeight" style="overflow-y: auto;background:#fff;">
             <ul nz-menu [nzMode]="'inline'" style="height:100%">
-                <li nz-submenu [nzOpen]="true">
+                <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/dashboard">
+                    <i class="anticon anticon-dashboard"></i>业务看板</li>
+
+                <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/custom">
+                    <i class="anticon anticon-laptop"></i>定制管理</li>
+                <!-- <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/after-sale">
+                    <i class="anticon anticon-compass"></i>售后管理</li> -->
+                <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/product">
+                    <i class="anticon anticon-gift"></i>产品管理</li>
+                <!-- <li nz-submenu>
+                    <span title>
+                        <i class="anticon anticon-tool"></i>上门管理</span>
+                    <ul>
+                        <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/visit/mine">我的安排</li>
+                        <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/visit/appointment">预约</li>
+                        <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/visit/schedule">排班</li>
+                    </ul>
+                </li> -->
+                <li nz-submenu>
                     <span title>
                         <i class="anticon anticon-setting"></i>系统管理</span>
                     <ul>
                         <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/setting/user">用户管理</li>
                         <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/setting/role">角色管理</li>
-                        <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/setting/shell-fabric">面料管理</li>
-                        <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/setting/product">产品管理</li>
+                        <!-- <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/setting/shell-fabric">面料管理</li> -->
+                        <li nz-submenu>
+                            <span title>
+                                <i class="anticon anticon-setting"></i>产品管理</span>
+                            <ul>
+                                <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/setting/product/category">类别管理</li>
+                                <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/setting/product/property">属性管理</li>
+                            </ul>
+                        </li>
                         <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/setting/formula">公式管理</li>
                         <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/setting/express">快递费管理</li>
                         <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/setting/craft">工艺管理</li>
                     </ul>
                 </li>
-                <li nz-menu-item routerLinkActive="ant-menu-item-selected" routerLink="/web/custom">定制管理</li>
             </ul>
         </nz-sider>
         <nz-layout style="padding:10px;">

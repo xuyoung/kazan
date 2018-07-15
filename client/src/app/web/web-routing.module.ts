@@ -38,6 +38,18 @@ const routes: Routes = [
             {
                 path: 'custom',
                 loadChildren: './module/custom/custom.module#CustomModule',
+            },
+            {
+                path: 'visit',
+                loadChildren: './module/visit/visit.module#VisitModule',
+            },
+            {
+                path: 'after-sale',
+                loadChildren: './module/after-sale/after-sale.module#AfterSaleModule',
+            },
+            {
+                path: 'product',
+                loadChildren: './module/after-sale/after-sale.module#AfterSaleModule',
             }
         ]
 

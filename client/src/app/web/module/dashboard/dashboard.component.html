@@ -1,31 +1,24 @@
-<p>
-    dashboard works!
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-    <br/>1
-</p>
+{{abc}}
+<div>
+    <div nz-row [nzGutter]="8">
+        <div nz-col [nzSpan]="24">
+            <nz-card nzTitle="图表">
+                <div echarts theme="vintage" [options]="option"></div>
+            </nz-card>
+        </div>
+    </div>
+    <div nz-row [nzGutter]="8">
+        <div nz-col [nzSpan]="24">
+            <nz-card nzTitle="日历">
+                <nz-calendar [(ngModel)]="date" nzMode="month"></nz-calendar>
+            </nz-card>
+        </div>
+    </div>
+    <div nz-row [nzGutter]="8">
+        <div nz-col [nzSpan]="24">
+            <nz-card nzTitle="编辑器">
+                <div [froalaEditor]="aaaa">Hello, Froala!</div>
+            </nz-card>
+        </div>
+    </div>
+</div>

@@ -3,7 +3,7 @@
         <span class="title">新建快递费{{id}}</span>
         <div>
             <button nz-button type="submit" (click)="submitForm($event,validateForm.value)" nzType="primary" [nzLoading]="isLoading">保存</button>
-            <button nz-button routerLink="/web/main/setting/express">返回</button>
+            <button nz-button routerLink="/web/setting/express">返回</button>
         </div>
     </div>
 
@@ -11,7 +11,7 @@
         <nz-form-label [nzSpan]="7" nzRequired>区域</nz-form-label>
         <nz-form-control [nzSpan]="12">
             <nz-select formControlName="area" nzMode="multiple" nzPlaceHolder="选择区域">
-                <nz-option *ngFor="let province of provinceInfo" [nzLabel]="province" [nzValue]="province"></nz-option>
+                <nz-option *ngFor="let province of provinceInfo" [nzLabel]="province.name" [nzValue]="province.id"></nz-option>
             </nz-select>
         </nz-form-control>
     </nz-form-item>

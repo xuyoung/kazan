@@ -1,32 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AREA } from '@mock/area';
+import { EXPRESS } from '@mock/express';
+
 @Component({
     selector: 'app-list',
-    templateUrl: './list.component.html',
-    styleUrls: ['./list.component.scss']
+    templateUrl: './list.component.html'
 })
 export class ListComponent implements OnInit {
 
-    dataSet = [
-        {
-            area: ['四川', '陕西'],
-            firstKg: 1,
-            firstCost: 10,
-            continuedKg: 1,
-            continuedCost: 8
-        },
-        {
-            area: ['澳门', '香港', '台湾'],
-            firstKg: 1,
-            firstCost: 27,
-            continuedKg: 1,
-            continuedCost: 27
-        }
-    ];
+    expressInfo = [];
 
     constructor() { }
 
     ngOnInit() {
+        for (let index in EXPRESS) {
+
+            console.log(EXPRESS[index])
+        }
     }
 
 }

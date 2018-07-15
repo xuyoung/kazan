@@ -4,7 +4,7 @@
         <span class="title">新建订单</span>
         <div>
             <button nz-button type="submit" (click)="submitForm($event,validateForm.value)" nzType="primary" [nzLoading]="isLoading">保存</button>
-            <button nz-button routerLink="/web/main/setting/express">返回</button>
+            <button nz-button routerLink="/web/setting/express">返回</button>
         </div>
     </div>
     <fieldset>
@@ -39,7 +39,7 @@
             </div>
             <div nz-col [nzSpan]="6">
                 <nz-form-item nzFlex>
-                    <nz-form-label>aaaa</nz-form-label>
+                    <nz-form-label>数量</nz-form-label>
                     <nz-form-control>
                         <input nz-input placeholder="placeholder" formControlName="aaa">
                     </nz-form-control>
