@@ -14,3 +14,12 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+
+// $router->group(['namespace' => 'App\KaZanApp', 'middleware' => 'authCheck', 'prefix' => '/api'], function ($router) {
+
+// });
+
+// $router->group(['namespace' => 'App\KaZanApp', 'prefix' => '/api'], function ($router) {
+//     $router->post('auth/login', 'Auth\Controllers\AuthController@login');
+// });
