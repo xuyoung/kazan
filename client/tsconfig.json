@@ -40,6 +40,9 @@
             ],
             "@mobile-core/*": [
                 "app/mobile/core/*"
+            ],
+            "@mock/*": [
+                "../mock/*"
             ]
         }
     }

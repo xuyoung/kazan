@@ -1,0 +1,41 @@
+<span class="display-inline-block" (click)="showModal()">锁定</span>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="锁定提醒" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+    <p>系统当前还有5人在线，可以选择直接锁定，或者发送消息提醒对方!</p>
+    <div nz-row nzType="flex">
+        <div>
+            <nz-badge nzDot>
+                <nz-avatar nzIcon="anticon anticon-user" [nzShape]="'square'"></nz-avatar>
+            </nz-badge>
+            <span class="display-block font-size-12 line-height-32">刘德华</span>
+        </div>
+
+        <div class="margin-left-sm">
+            <nz-badge nzDot>
+                <nz-avatar nzIcon="anticon anticon-user" [nzShape]="'square'"></nz-avatar>
+            </nz-badge>
+            <span class="display-block font-size-12 line-height-32">刘德华</span>
+        </div>
+        <div class="margin-left-sm">
+            <nz-badge nzDot>
+                <nz-avatar nzIcon="anticon anticon-user" [nzShape]="'square'"></nz-avatar>
+            </nz-badge>
+            <span class="display-block font-size-12 line-height-32">刘德华</span>
+        </div>
+        <div class="margin-left-sm">
+            <nz-badge nzDot>
+                <nz-avatar nzIcon="anticon anticon-user" [nzShape]="'square'"></nz-avatar>
+            </nz-badge>
+            <span class="display-block font-size-12 line-height-32">刘德华</span>
+        </div>
+        <div class="margin-left-sm">
+            <nz-badge nzDot>
+                <nz-avatar nzIcon="anticon anticon-user" [nzShape]="'square'"></nz-avatar>
+            </nz-badge>
+            <span class="display-block font-size-12 line-height-32">刘德华</span>
+        </div>
+    </div>
+</nz-modal>
+<ng-template #modalFooter>
+    <button nz-button nzType="primary" (click)="handleCancel()">发送提醒</button>
+    <button nz-button nzType="danger" (click)="handleOk()" [nzLoading]="isConfirmLoading">立刻锁定</button>
+</ng-template>

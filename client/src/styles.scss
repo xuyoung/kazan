@@ -8,12 +8,36 @@
     text-align: center;
 }
 
+.display-inline-block {
+    display: inline-block;
+}
+
+.display-block {
+    display: block;
+}
+
+.margin-left-sm {
+    margin-left: 10px;
+}
+
+.margin-left-md {
+    margin-left: 20px;
+}
+
 .line-height-32 {
     line-height: 32px;
 }
 
+.line-height-16 {
+    line-height: 16px;
+}
+
 .font-weight-bold {
     font-weight: bold;
+}
+
+.font-size-12 {
+    font-size: 12px;
 }
 
 body {

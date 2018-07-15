@@ -12,10 +12,13 @@ import { ListComponent as ExpressListComponent } from './express/list/list.compo
 import { FormComponent as ExpressFormComponent } from './express/form/form.component';
 import { ListComponent as FormulaListComponent } from './formula/list/list.component';
 import { FormComponent as FormulaFormComponent } from './formula/form/form.component';
-import { ListComponent as ProductListComponent } from './product/list/list.component';
-import { FormComponent as ProductFormComponent } from './product/form/form.component';
 import { ListComponent as ShellFabricListComponent } from './shell-fabric/list/list.component';
 import { FormComponent as ShellFabricFormComponent } from './shell-fabric/form/form.component';
+import { PropertyComponent } from './product/property/property.component';
+import { CategoryComponent } from './product/category/category.component';
+
+import { ListComponent as CraftListComponent } from './craft/list/list.component';
+import { FormComponent as CraftFormComponent } from './craft/form/form.component';
 
 @NgModule({
     imports: [
@@ -32,10 +35,12 @@ import { FormComponent as ShellFabricFormComponent } from './shell-fabric/form/f
         ExpressFormComponent,
         FormulaListComponent,
         FormulaFormComponent,
-        ProductListComponent,
-        ProductFormComponent,
         ShellFabricListComponent,
-        ShellFabricFormComponent
+        ShellFabricFormComponent,
+        PropertyComponent,
+        CategoryComponent,
+        CraftListComponent,
+        CraftFormComponent
     ]
 })
 export class SettingModule { }

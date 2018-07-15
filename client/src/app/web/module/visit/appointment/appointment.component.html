@@ -1,0 +1,146 @@
+<div class="page-title">
+    <span class="title">预约管理</span>
+    <button nz-button nzType="primary" (click)="createTplModal(tplTitle, tplContent, tplFooter)">新建预约</button>
+</div>
+<ng-template #tplTitle>
+    <span>新建预约</span>
+</ng-template>
+<ng-template #tplContent>
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">预约类型</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <nz-radio-group formControlName="password">
+                    <label nz-radio nzValue="A">测量</label>
+                    <label nz-radio nzValue="B">安装</label>
+                    <label nz-radio nzValue="C">售后</label>
+                </nz-radio-group>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>客户ID</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <input nz-input type="password" id="password" formControlName="password" (ngModelChange)="updateConfirmValidator()">
+                <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">Please input your password!</nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nickname" nzRequired>客户姓名 </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <input nz-input formControlName="nickname">
+                <nz-form-explain *ngIf="validateForm.get('nickname').dirty && validateForm.get('nickname').errors">Please input your nickname!</nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>客户电话</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="validateForm.controls['phoneNumber']">
+                <input formControlName="phoneNumber" id="'phoneNumber'" nz-input>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="website" nzRequired>客户所在区域</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <input nz-input formControlName="website" placeholder="website">
+                <nz-form-explain *ngIf="validateForm.get('website').dirty && validateForm.get('website').errors">Please input website!</nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="captcha" nzRequired>客户地址</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <input nz-input formControlName="website" placeholder="website">
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="captcha" nzRequired>意向时间</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <nz-date-picker formControlName="website" (ngModelChange)="onChange($event)" nzShowTime></nz-date-picker>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="captcha">备注</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <textarea formControlName="website" nz-input rows="2" placeholder="write any thing"></textarea>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="captcha">附件</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+                <nz-upload nzAction="https://jsonplaceholder.typicode.com/posts/">
+                    <button nz-button>
+                        <i class="anticon anticon-upload"></i>
+                        <span>上传</span>
+                    </button>
+                </nz-upload>
+            </nz-form-control>
+        </nz-form-item>
+
+
+    </form>
+</ng-template>
+<ng-template #tplFooter>
+    <button nz-button nzType="primary" (click)="destroyTplModal()" [nzLoading]="tplModalButtonLoading">确定预约</button>
+</ng-template>
+<form nz-form [formGroup]="validateForm" [nzLayout]="'inline'">
+    <nz-form-item>
+        <nz-form-label>显示模式</nz-form-label>
+        <nz-form-control>
+            <nz-select style="width: 120px;" formControlName="mode">
+                <nz-option nzValue="list" nzLabel="列表展示"></nz-option>
+                <nz-option nzValue="calendar" nzLabel="日历展示"></nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label>排班状态</nz-form-label>
+        <nz-form-control>
+            <nz-select style="width: 120px;" formControlName="status">
+                <nz-option nzValue="all" nzLabel="全部"></nz-option>
+                <nz-option nzValue="lucy" nzLabel="未排班"></nz-option>
+                <nz-option nzValue="lucy" nzLabel="已排班"></nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label>类型</nz-form-label>
+        <nz-form-control>
+            <nz-select style="width: 120px;" formControlName="type">
+                <nz-option nzValue="all" nzLabel="全部"></nz-option>
+                <nz-option nzValue="lucy" nzLabel="测量"></nz-option>
+                <nz-option nzValue="lucy" nzLabel="安装"></nz-option>
+                <nz-option nzValue="lucy" nzLabel="售后"></nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label>进度</nz-form-label>
+        <nz-form-control>
+            <nz-select style="width: 120px;" formControlName="progress">
+                <nz-option nzValue="all" nzLabel="全部"></nz-option>
+                <nz-option nzValue="lucy" nzLabel="未开始"></nz-option>
+                <nz-option nzValue="lucy" nzLabel="已完成"></nz-option>
+                <nz-option nzValue="lucy" nzLabel="故障"></nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label>人员</nz-form-label>
+        <nz-form-control>
+            <nz-select style="width: 120px;" formControlName="website">
+                <nz-option nzValue="jack" nzLabel="全部"></nz-option>
+                <nz-option nzValue="lucy" nzLabel="未开始"></nz-option>
+                <nz-option nzValue="lucy" nzLabel="已完成"></nz-option>
+                <nz-option nzValue="lucy" nzLabel="故障"></nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+</form>
+
+<nz-calendar>
+    <ul *nzDateCell="let date" class="events">
+        <ng-container [ngSwitch]="date.getDate()">
+            <ng-container *ngSwitchCase="11">
+                <li *ngFor="let item of listDataMap.eleven" (click)="test(item,tplTitle, tplContent, tplFooter)">{{item.content}}</li>
+            </ng-container>
+        </ng-container>
+    </ul>
+</nz-calendar>

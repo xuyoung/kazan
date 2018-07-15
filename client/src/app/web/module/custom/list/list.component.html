@@ -2,3 +2,58 @@
     <span class="title">订单管理</span>
     <button nz-button nzType="primary" routerLink="new">新建</button>
 </div>
+<nz-table #nzTable [nzData]="dataSet" [nzPageSize]="10">
+    <thead>
+        <tr>
+            <th nzShowExpand></th>
+            <th>客户ID</th>
+            <th>宽度*高度(cm)</th>
+            <th>厚度(cm)</th>
+            <th>订单状态</th>
+            <th>订单性质</th>
+            <th>产品</th>
+            <th>工艺</th>
+            <th>数量</th>
+            <th>出货日</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-template ngFor let-data [ngForOf]="nzTable.data">
+            <tr>
+                <td nzShowExpand nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"
+                    [(nzExpand)]="data.expand"></td>
+                <td>{{data.name}}</td>
+                <td>{{data.age}}</td>
+                <td>{{data.name}}</td>
+                <td>{{data.name}}</td>
+                <td>{{data.name}}</td>
+                <td>{{data.name}}</td>
+                <td>{{data.name}}</td>
+                <td>{{data.name}}</td>
+                <td>{{data.name}}</td>
+                <td>
+                    <a href="#">Delete</a>
+                </td>
+            </tr>
+            <tr [nzExpand]="data.expand">
+                <td></td>
+                <td colspan="10">
+                    <nz-steps [nzCurrent]="1" [nzProgressDot]="progressTemplate">
+                        <nz-step nzTitle="Finished" nzDescription="You can hover on the dot."></nz-step>
+                        <nz-step nzTitle="In Progress" nzDescription="You can hover on the dot."></nz-step>
+                        <nz-step nzTitle="Waiting" nzDescription="You can hover on the dot."></nz-step>
+                        <nz-step nzTitle="Waiting" nzDescription="You can hover on the dot."></nz-step>
+                    </nz-steps>
+                    <ng-template #progressTemplate let-dot let-status="status" let-index="index">
+                        <nz-popover nzContent="steps {{index}} status: {{status}}">
+                            <span nz-popover style="margin-left: -100%;">
+                                <ng-template [ngTemplateOutlet]="dot"></ng-template>
+                            </span>
+                        </nz-popover>
+                    </ng-template>
+                </td>
+            </tr>
+        </ng-template>
+    </tbody>
+</nz-table>

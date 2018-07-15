@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class UtilService {
 
-  constructor() { }
+    constructor() { }
+
+    abc(): string {
+        return "发大水发大水";
+    }
 }

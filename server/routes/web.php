@@ -14,3 +14,7 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+$router->get('test', function () use ($router) {
+    $abc = ["a"=>"aaaa","b"=>"发大水发大水"];
+    return json_encode($abc);
+});
