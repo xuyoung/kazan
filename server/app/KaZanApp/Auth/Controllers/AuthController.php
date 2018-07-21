@@ -8,8 +8,8 @@ use App\KaZanApp\Base\Controller;
 use Illuminate\Http\Request;
 
 /**
- *     登录验证控制器
- *     @author 李志军
+ * 登录验证控制器
+ * @author
  */
 class AuthController extends Controller
 {
@@ -71,30 +71,7 @@ class AuthController extends Controller
     {
         return $this->returnResult($this->authService->login($this->request->all()));
     }
-    public function quickLogin()
-    {
-        return $this->returnResult($this->authService->quickLogin($this->request->all()));
-    }
-    public function generalLoginQRCode()
-    {
-        return $this->returnResult($this->authService->generalLoginQRCode());
-    }
-    public function qrcodeSignOn()
-    {
-        return $this->returnResult($this->authService->qrcodeSignOn($this->request->all()));
-    }
-    /**
-     *
-     * @return type
-     */
-    public function singleSignOn()
-    {
-        return $this->returnResult($this->authService->singleSignOn($this->request->all()));
-    }
-    public function ssoRegisterInfo()
-    {
-        return $this->returnResult($this->authService->ssoRegisterInfo($this->request->input('token')));
-    }
+
     /**
      * 验证apiToken是否过期，是否有效，是否合法
      * @return boolean
@@ -104,10 +81,6 @@ class AuthController extends Controller
         return $this->returnResult($this->authService->check());
     }
 
-    public function refresh()
-    {
-        return $this->returnResult($this->authService->refresh());
-    }
     /**
      * @用户账号注销
      *
@@ -115,198 +88,14 @@ class AuthController extends Controller
      *
      * @return json 注销成功失败信息
      */
-    public function logout()
+    public function loginOut()
     {
-        return $this->returnResult($this->authService->logout());
-    }
-    /**
-     * 设置登录页主题
-     *
-     * @return boolean
-     */
-    public function setLoginTheme()
-    {
-        return $this->returnResult($this->authService->setLoginTheme($this->request->all()));
-    }
-    /**
-     * 获取登录页主题
-     *
-     * @return 登录页主题
-     */
-    public function getLoginTheme()
-    {
-        return $this->returnResult($this->authService->getLoginTheme());
-    }
-    public function getLoginTemplateInfo()
-    {
-        return $this->returnResult($this->authService->getLoginTemplateInfo());
-    }
-    /**
-     * 获取登录页logo
-     *
-     * @return 登录页logo
-     */
-    public function getLogo()
-    {
-        return $this->returnResult($this->authService->getLogo());
-    }
-    /**
-     * 上传主题图片
-     *
-     * @return 主题图片缩略图
-     */
-    public function uploadThemeImage()
-    {
-        return $this->returnResult($this->authService->uploadThemeImage($this->request->all()));
+        return $this->returnResult($this->authService->loginOut());
     }
 
-    public function setLogo()
-    {
-        return $this->returnResult($this->authService->setLogo($this->request->all()));
-    }
-    /**
-     * 获取登录页主题图片
-     *
-     * @success array data 登录页主题图片数组
-     * @successExample 成功返回示例:
-     * [
-     *  "123.jpg",
-     *  "234.jpg"
-     * ]
-     */
-    public function getLoginThemeImages()
-    {
-        return $this->returnResult($this->authService->getLoginThemeImages());
-    }
-    /**
-     * 删除登录页主题图片
-     *
-     * @param string thumb 删除图片的缩略图名称
-     *
-     * @success int data 是否删除成功状态 1成功，0不成功
-     * @successExample 成功返回示例:
-     * {
-     *    "status":1,
-     *    "data":1
-     * }
-     * @errorExample 失败返回示例:
-     * {
-     *    "status":1,
-     *    "data":0
-     * }
-     */
-    public function deleteThemeImage()
-    {
-        return $this->returnResult($this->authService->deleteThemeImage($this->request->all()));
-    }
-
-    public function getLoginTemplate()
-    {
-        return $this->returnResult($this->authService->getLoginTemplate());
-    }
-    /**
-     * 设置登录页模板
-     *
-     * @param string login_btn_color 按钮颜色
-     */
-    public function setLoginTemplate()
-    {
-        return $this->returnResult($this->authService->setLoginTemplate($this->request->all()));
-    }
-    public function getLoginBtnColor()
-    {
-        return $this->returnResult($this->authService->getLoginBtnColor());
-    }
-    /**
-     * 设置登录按钮颜色
-     *
-     * @param string login_btn_color 按钮颜色
-     * @paramExample 参数示例
-     * {"login_btn_color": "rgba(66,140,213,0.5)"}
-     */
-    public function setLoginBtnColor()
-    {
-        return $this->returnResult($this->authService->setLoginBtnColor($this->request->all()));
-    }
-    public function modifyPassword()
-    {
-        return $this->returnResult($this->authService->modifyPassword($this->request->all()));
-    }
-
-    public function getWelcomeWord()
-    {
-        return $this->returnResult($this->authService->getWelcomeWord());
-    }
-
-    public function setWelcomeWord()
-    {
-        return $this->returnResult($this->authService->setWelcomeWord($this->request->all()));
-    }
-    public function allowMobile()
-    {
-        return $this->returnResult($this->authService->allowMobile());
-    }
     //移动端返回基本信息
     public function appLoginInfo()
     {
-
         return $this->returnResult($this->authService->appLoginInfo());
-    }
-    /**
-     * 验证手机用户是否授权
-     *
-     * @param string user_id 用户ID
-     * @paramExample 参数示例
-     * api/login/mobile-empower/admin
-     *
-     * @success string empowerName 授权名称
-     * @success string expireDdate 授权过期日期
-     * @success string machineCode 授权机器码
-     * @success string mobileUserNumber 授权用户数
-     * @success string version 授权版本
-     *
-     * @successExample 成功返回示例
-     * {
-     *  "empowerName":"研发",
-     *  "machineCode":"05713D05C73D2927331F5B721A199EC0",
-     *  "mobileUserNumber":"5000",
-     *  "expireDdate":"2020-10-01",
-     *  "version":"10.0WAP"
-     * }
-     */
-    public function checkMobileEmpowerAndWapAllow($userId)
-    {
-        return $this->returnResult($this->authService->checkMobileEmpowerAndWapAllow($userId));
-    }
-    public function getUserDynamicCodeAuthStatus($userAccount)
-    {
-        return $this->returnResult($this->authService->getUserDynamicCodeAuthStatus($userAccount));
-    }
-    public function dynamicCodeSync()
-    {
-        return $this->returnResult($this->authService->dynamicCodeSync($this->request->all()));
-    }
-    public function getDynamicCodeSystemParamStatus()
-    {
-        return $this->returnResult($this->authService->getDynamicCodeSystemParamStatus());
-    }
-    public function getCaptcha($temp)
-    {
-        return $this->authService->getCaptcha($temp);
-    }
-    public function getSmsVerifyCode($phoneNumber)
-    {
-        return $this->returnResult($this->authService->getSmsVerifyCode($phoneNumber));
-    }
-
-    // 获取登录验证方式
-    public function getLoginAuthType()
-    {
-        return $this->returnResult($this->authService->getLoginAuthType());
-    }
-    // CAS认证登出
-    public function casLoginOut($loginUserId)
-    {
-        return $this->returnResult($this->authService->casLoginOut($loginUserId));
     }
 }

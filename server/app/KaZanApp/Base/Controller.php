@@ -32,7 +32,7 @@ class Controller extends BaseController
 
         if ($routeArray[0] != 'App\KaZanApp\Auth\Controllers\AuthController') {
             $this->registerOwnInfo();
-            if (envOverload('APP_DEBUG', false)) {
+            if (env_config('APP_DEBUG', false)) {
                 //$this->middleware("routeVisitsRecord");
             }
         }

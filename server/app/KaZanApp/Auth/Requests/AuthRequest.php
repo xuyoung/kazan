@@ -9,31 +9,12 @@ class AuthRequest extends Request
 	protected $rules = [
 		'login'		=> [
             'user_account' => "required"
-        ],
-        'setQRCodeLoginInfo' => [
-            'nonce_str' => "required",
-            'login_key' => "required"
-        ],
-        'qrcodeSignOn' => [
-            'nonce_str' => "required",
-            'login_key' => "required"
-        ],
-        'modifyPassword' => [
-            'password' => 'required|min:6|max:20'
-        ],
+        ]
 	];
 
 	protected $messages = [
 		'login'		=> [
             'user_account.required' => "0x003002",
-        ],
-        'setQRCodeLoginInfo' => [
-            'nonce_str.required' => "0x003018",
-            'login_key.required' => "0x003017"
-        ],
-        'qrcodeSignOn' => [
-            'nonce_str.required' => "0x003018",
-            'login_key.required' => "0x003017"
         ]
 	];
 

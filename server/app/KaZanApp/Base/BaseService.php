@@ -20,6 +20,12 @@ class BaseService
     {
         $this->loginLang = 'zh-cn';
     }
+
+    public function defaultValue($key, $data, $default)
+    {
+        return isset($data[$key]) ? $data[$key] : $default;
+    }
+
     /**
      * 获取返回数据数据
      *

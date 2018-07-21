@@ -7,9 +7,9 @@ use Illuminate\Contracts\Auth\Authenticatable;
 /**
  * 用户实体
  *
- * @author lizhijun
+ * @author
  *
- * @since  2015-10-16 创建
+ * @since
  */
 class AuthEntity extends BaseEntity implements Authenticatable
 {
