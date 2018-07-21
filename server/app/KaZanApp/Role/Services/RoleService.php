@@ -20,10 +20,11 @@ class RoleService extends BaseService
 
     public function addRole($data)
     {
-        if (isset($data['role_name'])) {
+        if (isset($data['role_name']) && isset($data['role_permission'])) {
             $insertRoleData = [
-                'role_name' => $data['role_name']
-                'role_no'   => isset($data['role_no']) ? $data['role_no'] : '';,
+                'role_name'       => $data['role_name'],
+                'role_permission' => json_encode($data['role_permission']),
+                'role_no'         => isset($data['role_no']) ? $data['role_no'] : '',
             ];
 
             return $this->entity->insert($insertRoleData);
@@ -33,9 +34,10 @@ class RoleService extends BaseService
     public function editRole($data)
     {
         if (isset($data['role_id'])) {
-            $editRoleData              = [];
-            $editRoleData['role_name'] = isset($data['role_name']) ? $data['role_name'] : '';
-            $editRoleData['role_no']   = isset($data['role_no']) ? $data['role_no'] : '';
+            $editRoleData                    = [];
+            $editRoleData['role_name']       = isset($data['role_name']) ? $data['role_name'] : '';
+            $editRoleData['role_permission'] = isset($data['role_permission']) ? json_encode($data['role_permission']) : '';
+            $editRoleData['role_no']         = isset($data['role_no']) ? $data['role_no'] : '';
 
             return $this->entity->update($editRoleData, ['role_id' => $data['role_id']]);
         }

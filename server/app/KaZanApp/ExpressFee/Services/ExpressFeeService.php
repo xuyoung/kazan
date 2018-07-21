@@ -43,8 +43,8 @@ class ExpressFeeService extends BaseService
                 'area'              => $data['area'],
                 'first_weight'      => $data['first_weight'],
                 'first_fee'         => $data['first_fee'],
-                'additional_weight' => isset($data['additional_weight']) ? $data['additional_weight'] : 0;,
-                'additional_fee'    => isset($data['additional_fee']) ? $data['additional_fee'] : 0,
+                'additional_weight' => isset($data['additional_weight']) ? $data['additional_weight'] : 0,
+                'additional_fee'    => isset($data['additional_fee']) ? $data['additional_fee'] : 0
             ];
 
             return $this->entity->insert($insertExpressFeeData);
