@@ -44,6 +44,42 @@ class Utils
         return $default;
     }
 
+    public static function readLinesFromFile($filePath)
+    {
+        static $data;
+
+        $key = md5($filePath);
+        if (isset($data[$key])) {
+            return $data[$key];
+        }
+
+        $autodetect = ini_get('auto_detect_line_endings');
+        ini_set('auto_detect_line_endings', '1');
+        $lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        ini_set('auto_detect_line_endings', $autodetect);
+
+        $data       = [];
+        $data[$key] = [];
+        foreach ($lines as $line) {
+            if (strpos($line, '=') === false) {
+                continue;
+            }
+
+            if (strpos(ltrim($line), '#') === 0) {
+                continue;
+            }
+
+            if (strpos(ltrim($line), '//') === 0) {
+                continue;
+            }
+
+            list($k, $v)          = explode('=', $line);
+            $data[$key][trim($k)] = trim($v);
+        }
+
+        return $data[$key];
+    }
+
     public static function getConfigRoutes()
     {
         $apiSegment = Request::createFromGlobals()->segment(2);

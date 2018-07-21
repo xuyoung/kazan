@@ -73,3 +73,10 @@ if (!function_exists('convert_pinyin')) {
         return Utils::convertPy($str);
     }
 }
+
+if (!function_exists("readLinesFromFile")) {
+    function readLinesFromFile($filePath)
+    {
+        return Utils::readLinesFromFile($filePath);
+    }
+}
