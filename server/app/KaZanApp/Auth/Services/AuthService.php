@@ -94,14 +94,14 @@ class AuthService extends BaseService
         }
 
         if (!Cache::has($token)) {
-            return ['code' => ['0x003003', 'auth']];
+            return ['code' => ['0x001003', 'auth']];
         }
 
         $lastVisitTime = Cache::get($token . '_last_login_time');
         $tokenTtl = config('auth.token_ttl');
 
         if ((time() - $lastVisitTime) > ($tokenTtl * 60)) {
-            return ['code' => ['0x003008', 'auth']];
+            return ['code' => ['0x001008', 'auth']];
         }
 
         Cache::forever($token . '_last_login_time', time());
@@ -167,11 +167,11 @@ class AuthService extends BaseService
         $user = $this->userService->getUserByAccount($userAccount);
 
         if (!$user) {
-            return $this->errors = ['code' => ['0x003004', 'auth']];
+            return $this->errors = ['code' => ['0x001004', 'auth']];
         }
 
         if (!$user->user_account || $user->user_account == '') {
-            return $this->errors = ['code' => ['0x003014', 'auth']];
+            return $this->errors = ['code' => ['0x001014', 'auth']];
         }
         //验证密码
         if ($user->password != crypt($password, $user->password)) {
@@ -183,7 +183,7 @@ class AuthService extends BaseService
                 $resStr = $password;
             }
 
-            return $this->errors = ['code' => ['0x003005', 'auth']];
+            return $this->errors = ['code' => ['0x001005', 'auth']];
         }
 
         return $user;

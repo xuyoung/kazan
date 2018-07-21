@@ -31,9 +31,10 @@ class RoleService extends BaseService
         }
     }
 
-    public function editRole($data)
+    public function editRole($data, $roleId = '')
     {
-        if (isset($data['role_id'])) {
+        if (isset($data['role_id']) || !empty($roleId)) {
+            $data['role_id'] = isset($data['role_id']) ? $data['role_id'] : $roleId;
             $editRoleData                    = [];
             $editRoleData['role_name']       = isset($data['role_name']) ? $data['role_name'] : '';
             $editRoleData['role_permission'] = isset($data['role_permission']) ? json_encode($data['role_permission']) : '';

@@ -181,9 +181,9 @@ class UserController extends Controller
      * @errorExample {json} Error-Response:
      * { "status": 0,"errors":[{"code":"0x000003","message":"未知错误"}] }
      */
-    public function editUser()
+    public function editUser($userId)
     {
-        $result = $this->userService->editUser($this->request->all());
+        $result = $this->userService->editUser($this->request->all(), $userId);
         return $this->returnResult($result);
     }
 

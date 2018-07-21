@@ -32,9 +32,9 @@ class RoleController extends Controller
         return $this->returnResult($result);
     }
 
-    public function editRole()
+    public function editRole($roleId)
     {
-        $result = $this->roleService->editRole($this->request->all());
+        $result = $this->roleService->editRole($this->request->all(), $roleId);
         return $this->returnResult($result);
     }
 

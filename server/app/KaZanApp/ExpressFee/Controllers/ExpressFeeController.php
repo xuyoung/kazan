@@ -37,9 +37,9 @@ class ExpressFeeController extends Controller
         return $this->returnResult($result);
     }
 
-    public function editExpressFee()
+    public function editExpressFee($expressFeeId)
     {
-        $result = $this->expressFeeService->editExpressFee($this->request->all());
+        $result = $this->expressFeeService->editExpressFee($this->request->all(), $expressFeeId);
         return $this->returnResult($result);
     }
 

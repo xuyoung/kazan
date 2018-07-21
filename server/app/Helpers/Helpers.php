@@ -74,9 +74,20 @@ if (!function_exists('convert_pinyin')) {
     }
 }
 
-if (!function_exists("readLinesFromFile")) {
-    function readLinesFromFile($filePath)
+if (!function_exists("read_lines_from_file")) {
+    function read_lines_from_file($filePath)
     {
         return Utils::readLinesFromFile($filePath);
     }
+}
+
+/**
+ * sql数据错误返回值
+ */
+if (!function_exists('sql_error')) {
+    function sql_error($errorCode, $errorMessage)
+    {
+        return Utils::sqlError($errorCode, $errorMessage);
+    }
+
 }

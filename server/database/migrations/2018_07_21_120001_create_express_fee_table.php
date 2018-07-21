@@ -16,7 +16,7 @@ class CreateExpressFeeTable extends Migration
     public function up()
     {
         Schema::create('express_fee', function (Blueprint $table) {
-            $table->increments('express_fee_id');
+            $table->increments('express_fee_id')->comment('快递费模板ID';
             $table->string('area', 32)->comment('区域');
             $table->string('first_weight', 32)->comment('首重');
             $table->decimal('first_fee', 10, 1)->comment('首费');

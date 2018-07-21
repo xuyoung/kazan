@@ -3,9 +3,9 @@
 $moduleDir = dirname(__DIR__) . '/app/KaZanApp';
 $modules   = get_config_routes();
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+// $router->get('/', function () use ($router) {
+//     return $router->app->version();
+// });
 
 $router->group(['namespace' => 'App\KaZanApp', 'middleware' => 'authCheck', 'prefix' => '/api'], function ($router) use ($moduleDir, $modules) {
     $router->get('app-login-info', 'Auth\Controllers\AuthController@appLoginInfo');

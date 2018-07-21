@@ -127,12 +127,12 @@ class UserService extends BaseService
      *
      * @return array    添加的用户信息
      */
-    public function editUser($data)
+    public function editUser($data, $loginUserId = '')
     {
-        if (isset($data['user_id'])) {
+        if (isset($data['user_id']) || !empty($loginUserId)) {
             $password = isset($data["password"]) ? $data["password"] : '';
             $password = crypt($password, null);
-
+            $data['user_id'] = isset($data['user_id']) ? $data['user_id'] : $loginUserId;
             $editUserData                 = [];
             $editUserData['user_account'] = isset($data['user_account']) ? $data['user_account'] : '';
             $editUserData['user_name']    = isset($data['user_name']) ? $data['user_name'] : '';

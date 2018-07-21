@@ -51,9 +51,10 @@ class ExpressFeeService extends BaseService
         }
     }
 
-    public function editExpressFee($data)
+    public function editExpressFee($data, $expressFeeId = '')
     {
-        if (isset($data['express_fee_id'])) {
+        if (isset($data['express_fee_id']) || !empty($expressFeeId)) {
+            $data['express_fee_id'] = isset($data['express_fee_id']) ? $data['express_fee_id'] : $expressFeeId;
             $editExpressFeeData                      = [];
             $editExpressFeeData['area']              = isset($data['area']) ? $data['area'] : '';
             $editExpressFeeData['first_weight']      = isset($data['first_weight']) ? $data['first_weight'] : '';

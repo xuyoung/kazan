@@ -29,11 +29,11 @@ class Utils
             return env($key, $default);
         }
 
-        $data = readLinesFromFile($filePath);
+        $data = read_lines_from_file($filePath);
 
         $envFile = base_path('.env');
         if (is_file($envFile)) {
-            $dataEnv = readLinesFromFile($envFile);
+            $dataEnv = read_lines_from_file($envFile);
             $data    = array_merge($data, $dataEnv);
         }
 
@@ -654,4 +654,16 @@ class Utils
         return mb_convert_encoding($content, 'UTF-8', $encode);
     }
 
+    public static function sqlError($errorCode, $errorMessage)
+    {
+        if ($errorCode == '42S22') {
+            $errorMessage = explode("'", $errorMessage)[1];
+            $errorMessage = str_replace('{field}', $errorMessage, trans('common.0x000007'));
+            header('Content-Type: application/json', false, 200);
+            echo json_encode(error_response('0x000007', '', [$errorMessage]));
+            exit;
+        }
+
+        return false;
+    }
 }
