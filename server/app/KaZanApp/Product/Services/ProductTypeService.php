@@ -83,7 +83,7 @@ class ProductTypeService extends BaseService
      */
     public function getProductTypeTotal($params)
     {
-        $params['page'] = 0;
+        $params['page']        = 0;
         $params['return_type'] = 'count';
         return $this->getProductTypeList($params);
     }
@@ -103,7 +103,7 @@ class ProductTypeService extends BaseService
     {
         if (isset($data['product_type_name'])) {
             $insertProductTypeData = [
-                'product_type_name' => $data['product_type_name']
+                'product_type_name' => $data['product_type_name'],
             ];
 
             return $this->entity->insert($insertProductTypeData);
@@ -124,8 +124,8 @@ class ProductTypeService extends BaseService
     public function editProduct($data, $productTypeId = '')
     {
         if (isset($data['product_type_id'])) {
-            $data['product_type_id'] = isset($data['product_type_id']) ? $data['product_type_id'] : $productTypeId;
-            $editProductTypeData                 = [];
+            $data['product_type_id']                  = isset($data['product_type_id']) ? $data['product_type_id'] : $productTypeId;
+            $editProductTypeData                      = [];
             $editProductTypeData['product_type_name'] = isset($data['product_type_name']) ? $data['product_type_name'] : '';
 
             return $this->entity->update($editProductTypeData, ['product_type_id' => $data['product_type_id']]);

@@ -34,7 +34,7 @@ class ProductTypeEntity extends BaseEntity
      *
      * @var string
      */
-    public $primaryKey   = 'product_type_id';
+    public $primaryKey = 'product_type_id';
 
     /**
      * 默认排序
