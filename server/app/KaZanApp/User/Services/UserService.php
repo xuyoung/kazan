@@ -207,9 +207,9 @@ class UserService extends BaseService
     {
         if (isset($data['old_password']) && isset($data['new_password']) && isset($data['confirm_new_password'])) {
             $oldPassword = crypt($data['old_password'], null);
-            $userInfo = $this->getUserAllData->($userId);
+            $userInfo = $this->getUserAllData($userId);
             if ($userInfo->password && $userInfo->password == $oldPassword) {
-                if ($data['new_password'] != $data['confirm_new_password') {
+                if ($data['new_password'] != $data['confirm_new_password']) {
                     return ['code' => ['0x002002', 'user']];
                 }
                 $newPassword = crypt($data['new_password'], null);

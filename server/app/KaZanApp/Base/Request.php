@@ -1,9 +1,9 @@
 <?php
 namespace App\KaZanApp\Base;
 
-use Illuminate\Http\Request as baseRequest;
+use Illuminate\Http\Request as BaseRequest;
 
-class Request extends baseRequest
+class Request extends BaseRequest
 {
     /**
      * 获取路由验证规则

@@ -1,4 +1,3 @@
-
 <?php
 namespace App\KaZanApp\Role\Controllers;
 
@@ -24,6 +23,12 @@ class RoleController extends Controller
         $this->roleRequest = app('App\KaZanApp\Role\Requests\RoleRequest');
         $this->formFilter($request, $this->roleRequest);
         $this->request = $request;
+    }
+
+    public function getRoleListAndTotal()
+    {
+        $result = $this->roleService->getRoleListAndTotal($this->request->all());
+        return $this->returnResult($result);
     }
 
     public function addRole()

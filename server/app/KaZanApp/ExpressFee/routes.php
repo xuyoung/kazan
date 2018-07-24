@@ -2,8 +2,8 @@
 
 $routeConfig = [
     // 快递费管理--获取快递费列表数据
-    ['express-fee', 'getExpressFeeList'],
-    ['express-fee/express-fees', 'getExpressFeeList', 'post'],
+    ['express-fee', 'getExpressFeeListAndTotal'],
+    ['express-fee/express-fees', 'getExpressFeeListAndTotal', 'post'],
     // 快递费管理--获取快递费信息
     ['express-fee/{express_fee_id}', 'getExpressFeeInfo'],
     // 快递费管理--新建快递费

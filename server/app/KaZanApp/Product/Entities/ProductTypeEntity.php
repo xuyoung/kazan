@@ -1,5 +1,5 @@
 <?php
-namespace App\KaZanApp\ProductType\Entities;
+namespace App\KaZanApp\Product\Entities;
 
 use App\KaZanApp\Base\BaseEntity;
 use Illuminate\Database\Eloquent\SoftDeletes;

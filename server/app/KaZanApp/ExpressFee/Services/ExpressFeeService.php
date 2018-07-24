@@ -18,6 +18,34 @@ class ExpressFeeService extends BaseService
         $this->entity = $entity;
     }
 
+    /**
+     * 快递费管理--获取快递费列表和数量
+     *
+     * @author
+     *
+     * @param  array $params [description]
+     *
+     * @since  2018-07-21 创建
+     *
+     * @return array    快递费列表和数量
+     */
+    public function getExpressFeeListAndTotal($params)
+    {
+        $params = $this->parseParams($params);
+        return $this->response($this, 'getExpressFeeListTotal', 'getExpressFeeList', $params);
+    }
+
+    /**
+     * 快递费管理--获取快递费列表
+     *
+     * @author
+     *
+     * @param  array $params [description]
+     *
+     * @since  2018-07-20 创建
+     *
+     * @return array    快递费列表
+     */
     public function getExpressFeeList($params)
     {
         $default = [
@@ -33,7 +61,31 @@ class ExpressFeeService extends BaseService
         $query = $this->entity->select($params['fields']);
         $query = $query->multiWheres($params['search'])->orders($params['order_by']);
         $query = $query->parsePage($params['page'], $params['limit']);
+        if ($params['return_type'] == 'array') {
+            return $query->get()->toArray();
+        } else if ($params['return_type'] == 'count') {
+            return $query->count();
+        } else {
+            return $query->get();
+        }
+    }
 
+    /**
+     * 快递费管理--获取快递费数量
+     *
+     * @author
+     *
+     * @param  array $params [description]
+     *
+     * @since  2018-07-20 创建
+     *
+     * @return number    快递费数量
+     */
+    public function getExpressFeeListTotal($params)
+    {
+        $params['page'] = 0;
+        $params['return_type'] = 'count';
+        return $this->getExpressFeeList($params);
     }
 
     public function addExpressFee($data)

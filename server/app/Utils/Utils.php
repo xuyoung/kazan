@@ -84,10 +84,8 @@ class Utils
     {
         $apiSegment = Request::createFromGlobals()->segment(2);
 
-        if ($apiSegment == 'user') {
-            return ['User', 'Task', 'Portal'];
-        }
         $routes = config('route');
+
         if (!isset($routes[$apiSegment])) {
             return [];
         }

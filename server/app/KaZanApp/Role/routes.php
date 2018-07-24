@@ -2,8 +2,8 @@
 
 $routeConfig = [
     // 角色管理--获取角色列表数据
-    ['role', 'getRoleList'],
-    ['role/roles', 'getRoleList', 'post'],
+    ['role', 'getRoleListAndTotal'],
+    ['role/roles', 'getRoleListAndTotal', 'post'],
     // 角色管理--获取角色信息
     ['role/{role_id}', 'getRoleInfo'],
     // 角色管理--新建角色

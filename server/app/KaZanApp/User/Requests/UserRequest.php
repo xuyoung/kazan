@@ -9,16 +9,16 @@ class UserRequest extends Request
     {
         $userId = isset($request->route()[2]['user_id']) ? $request->route()[2]['user_id'] : '';
         $rules  = array(
-            'addUser'     => array(
-                'user_name'             => 'required|string',
-                'user_account'          => 'required|string|unique:user,user_account',
-                'role_id'               => 'required|integer'
+            'addUser'  => array(
+                'user_name'    => 'required|string',
+                'user_account' => 'required|string|unique:user,user_account',
+                'role_id'      => 'required|integer',
             ),
-            'editUser'       => array(
-                'user_id'               => 'required|integer',
-                'user_name'             => 'required|string',
-                'user_account'          => 'required|string|unique:user,user_account,'.$userId.',user_id',
-                'role_id'               => 'required|integer'
+            'editUser' => array(
+                'user_id'      => 'required|integer',
+                'user_name'    => 'required|string',
+                'user_account' => 'required|string|unique:user,user_account,' . $userId . ',user_id',
+                'role_id'      => 'required|integer',
             ),
         );
 

@@ -38,7 +38,7 @@ return [
     | the language folders that are provided through your application.
     |
     */
-    'fallback_locale' => env_config('APP_FALLBACK_LOCALE', 'en'),
+    'fallback_locale' => env_config('APP_FALLBACK_LOCALE', 'zh—CN'),
 
     //sql执行时间(ms)
     'long_query_time' => env_config('LONG_QUERY_TIME', '1000'),

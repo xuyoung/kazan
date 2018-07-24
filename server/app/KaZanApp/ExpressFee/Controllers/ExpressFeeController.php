@@ -25,9 +25,9 @@ class ExpressFeeController extends Controller
         $this->request = $request;
     }
 
-    public function getExpressFeeList()
+    public function getExpressFeeListAndTotal()
     {
-        $result = $this->expressFeeService->getExpressFeeList($this->request->all());
+        $result = $this->expressFeeService->getExpressFeeListAndTotal($this->request->all());
         return $this->returnResult($result);
     }
 

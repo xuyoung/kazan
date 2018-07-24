@@ -4,7 +4,7 @@ namespace App\KaZanApp\Auth\Services;
 
 use App\KaZanApp\Base\BaseService;
 use Cache;
-use Request;
+use Illuminate\Http\Request;
 use Lang;
 
 /**
@@ -166,13 +166,10 @@ class AuthService extends BaseService
         //验证账号
         $user = $this->userService->getUserByAccount($userAccount);
 
-        if (!$user) {
+        if (empty($user)) {
             return $this->errors = ['code' => ['0x001004', 'auth']];
         }
 
-        if (!$user->user_account || $user->user_account == '') {
-            return $this->errors = ['code' => ['0x001014', 'auth']];
-        }
         //验证密码
         if ($user->password != crypt($password, $user->password)) {
             if (strlen($password) > 5) {

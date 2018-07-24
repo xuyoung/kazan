@@ -1,9 +1,9 @@
 <?php
 namespace App\KaZanApp\User\Controllers;
 
+use App\KaZanApp\User\Requests\UserRequest;
 use Illuminate\Http\Request;
 use App\KaZanApp\Base\Controller;
-use Illuminate\Support\Facades\DB;
 
 /**
  * 用户 controller ，实现用户管理菜单的所有内容，以及所有和用户模块相关的功能实现

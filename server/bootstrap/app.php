@@ -24,16 +24,17 @@ $app = new Laravel\Lumen\Application(
 );
 
 $userConfigs = [
-    'app', 'auth', 'kazan'
+    'app', 'auth', 'kazan', 'route'
 ];
 foreach ($userConfigs as $config) {
     $app->configure($config);
 }
 
 $userAliases = [
-    'Illuminate\Http\Request'          => 'Request',
-    'Illuminate\Support\Facades\Lang'  => 'Lang',
-    'Illuminate\Support\Facades\Redis' => 'Redis',
+    'Illuminate\Support\Facades\Request' => 'Request',
+    // 'Illuminate\Http\Request'            => 'Request',
+    'Illuminate\Support\Facades\Lang'    => 'Lang',
+    'Illuminate\Support\Facades\Redis'   => 'Redis',
 ];
 $app->withFacades(true, $userAliases);
 

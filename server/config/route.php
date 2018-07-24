@@ -1,9 +1,9 @@
 <?php
 
 return [
-    // 'login'          => 'Auth',
-    // 'app-login-info' => 'Auth',
-    // 'user'           => 'User',
-    // 'role'           => 'Role',
-    // 'express_fee'    => 'ExpressFee'
+    'login'          => 'Auth',
+    'user'           => 'User',
+    'role'           => 'Role',
+    'express-fee'    => 'ExpressFee',
+    'product'        => 'Product',
 ];

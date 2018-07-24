@@ -2,8 +2,8 @@
 
 $routeConfig = [
     // 产品管理--获取产品类别列表数据
-    ['product/product-type', 'getProductListAndTotal'],
-    ['product/product-types', 'getProductListAndTotal', 'post'],
+    ['product/product-type', 'getProductTypeListAndTotal'],
+    ['product/product-types', 'getProductTypeListAndTotal', 'post'],
     // 产品管理--获取产品类别信息
     ['product/product-type/{type_id}', 'getProductTypeInfo'],
     // 产品管理--新建产品类别
