@@ -6,4 +6,5 @@ return [
     'role'           => 'Role',
     'express-fee'    => 'ExpressFee',
     'product'        => 'Product',
+    'formula'        => 'formula',
 ];

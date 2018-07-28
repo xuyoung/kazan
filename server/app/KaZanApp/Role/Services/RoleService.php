@@ -122,6 +122,10 @@ class RoleService extends BaseService
 
     public function getRoleInfo($roleId)
     {
-        return $this->entity->where('role_id', $roleId)->first();
+        $roleInfo = $this->entity->where('role_id', $roleId)->first();
+        if (!empty($roleInfo) && isset($roleInfo->role_permission)) {
+            $roleInfo->role_permission = json_decode($roleInfo->role_permission);
+        }
+        return $roleInfo;
     }
 }
