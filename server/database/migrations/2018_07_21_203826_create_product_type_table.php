@@ -9,6 +9,8 @@ class CreateProductTypeTable extends Migration
     /**
      * Run the migrations.
      *
+     * 产品类别表
+     *
      * @return void
      */
     public function up()

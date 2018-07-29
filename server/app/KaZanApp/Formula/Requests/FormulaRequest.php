@@ -25,6 +25,7 @@ class FormulaRequest extends Request
         if (empty($function)) {
             $function = explode("@", $request->route()[1]['uses'])[1];
         }
+
         return $this->getRouteValidateRule($rules, $function);
     }
 }

@@ -17,7 +17,7 @@ class Controller extends BaseController
     public $apiToken;
     public function __construct()
     {
-        // $this->setGlobalInfo();
+        $this->setGlobalInfo();
     }
 
     /**
@@ -28,10 +28,14 @@ class Controller extends BaseController
         $route      = Request::route();
         $routeArray = explode('@', $route[1]['uses']);
 
-        $this->setLocale();
+        $this->setLang();
+        //$this->setLocale();
+
+        // Lang::setLocale(config('app.locale'));
+        Lang::setLocale('zh-CN');
 
         if ($routeArray[0] != 'App\KaZanApp\Auth\Controllers\AuthController') {
-            $this->registerOwnInfo();
+            // $this->registerOwnInfo();
             if (env_config('APP_DEBUG', false)) {
                 //$this->middleware("routeVisitsRecord");
             }
@@ -203,6 +207,12 @@ class Controller extends BaseController
             }
         }
         return success_response($result === true ? false : $result);
+    }
+
+    private function setLang(){
+        if (Request::has('lang')) {
+            Lang::setLocale(Request::input('lang'));
+        }
     }
 
     /**

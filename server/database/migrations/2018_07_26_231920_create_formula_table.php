@@ -9,6 +9,8 @@ class CreateFormulaTable extends Migration
     /**
      * Run the migrations.
      *
+     * 公式表
+     *
      * @return void
      */
     public function up()

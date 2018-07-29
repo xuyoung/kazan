@@ -319,6 +319,10 @@ class Logger implements LoggerInterface
         }
         $ts->setTimezone(static::$timezone);
 
+        if (!env_config('APP_DEBUG')) {
+            $message = $message->getMessage() .' in '. $message->getFile() .':'. $message->getLine();
+        }
+
         $record = array(
             'message' => (string) $message,
             'context' => $context,
