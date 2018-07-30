@@ -28,11 +28,11 @@ class Controller extends BaseController
         $route      = Request::route();
         $routeArray = explode('@', $route[1]['uses']);
 
-        $this->setLang();
-        //$this->setLocale();
+        // $this->setLang();
+        // $this->setLocale();
 
         // Lang::setLocale(config('app.locale'));
-        Lang::setLocale('zh-CN');
+        // Lang::setLocale('zh-CN');
 
         if ($routeArray[0] != 'App\KaZanApp\Auth\Controllers\AuthController') {
             // $this->registerOwnInfo();

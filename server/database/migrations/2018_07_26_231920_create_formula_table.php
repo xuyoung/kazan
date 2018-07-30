@@ -16,7 +16,7 @@ class CreateFormulaTable extends Migration
     public function up()
     {
         Schema::create('formula', function (Blueprint $table) {
-            $table->increments('formula_id');
+            $table->increments('formula_id')->comment('公式ID');
             $table->integer('product_id')->comment('产品ID');
             $table->string('cloth_size', 100)->comment('布号');
             $table->mediumText('formula_json')->comment('公式');

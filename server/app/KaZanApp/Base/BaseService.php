@@ -18,7 +18,7 @@ class BaseService
      */
     public function __construct()
     {
-        $this->loginLang = 'zh-cn';
+        $this->loginLang = 'zh-CN';
     }
 
     public function defaultValue($key, $data, $default)

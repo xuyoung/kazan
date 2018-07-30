@@ -35,6 +35,7 @@ class AuthCheck
      */
     public function handle($request, Closure $next)
     {
+        app('translator')->setLocale('zh-CN');
         $auth = $this->auth->check();
         if (isset($auth['code'])) {
             return new JsonResponse(error_response($auth['code'][0], $auth['code'][1]), 401);
