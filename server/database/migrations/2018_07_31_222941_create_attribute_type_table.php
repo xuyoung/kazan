@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttributeTable extends Migration
+class CreateAttributeTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,9 +15,9 @@ class CreateAttributeTable extends Migration
      */
     public function up()
     {
-        Schema::create('attribute', function (Blueprint $table) {
-            $table->increments('attribute_id')->comment('属性类别ID');
-            $table->string('attribute_name', 100)->comment('属性类别名称');
+        Schema::create('attribute_type', function (Blueprint $table) {
+            $table->increments('attribute_type_id')->comment('属性类别ID');
+            $table->string('attribute_type_name', 100)->comment('属性类别名称');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateAttributeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attribute');
+        Schema::dropIfExists('attribute_type');
     }
 }

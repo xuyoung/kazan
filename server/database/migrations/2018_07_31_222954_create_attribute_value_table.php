@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttributeInfoTable extends Migration
+class CreateAttributeValueTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,10 +15,10 @@ class CreateAttributeInfoTable extends Migration
      */
     public function up()
     {
-        Schema::create('attribute_info', function (Blueprint $table) {
-            $table->increments('attribute_info_id')->comment('属性值ID');
-            $table->integer('attribute_id')->comment('属性类别ID');
-            $table->string('attribute_info_name', 100)->comment('属性值名称');
+        Schema::create('attribute_value', function (Blueprint $table) {
+            $table->increments('attribute_value_id')->comment('属性值ID');
+            $table->integer('attribute_type_id')->comment('属性类别ID');
+            $table->string('attribute_value_name', 100)->comment('属性值名称');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateAttributeInfoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attribute_info');
+        Schema::dropIfExists('attribute_value');
     }
 }
