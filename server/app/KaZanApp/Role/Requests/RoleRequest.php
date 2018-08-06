@@ -13,7 +13,6 @@ class RoleRequest extends Request
                 'role_name'             => 'required|string'
             ),
             'editRole'       => array(
-                'role_id'               => 'required|integer',
                 'role_name'             => 'required|string'
             ),
         );
