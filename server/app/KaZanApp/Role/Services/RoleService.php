@@ -91,10 +91,10 @@ class RoleService extends BaseService
 
     public function addRole($data)
     {
-        if (isset($data['role_name']) && isset($data['role_permission'])) {
+        if (isset($data['role_name'])) {
             $insertRoleData = [
                 'role_name'       => $data['role_name'],
-                'role_permission' => json_encode($data['role_permission']),
+                'role_permission' => isset($data['role_permission']) ? json_encode($data['role_permission']) : '',
                 'role_no'         => isset($data['role_no']) ? $data['role_no'] : '',
             ];
 
