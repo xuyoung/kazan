@@ -110,7 +110,7 @@ class FormulaService extends BaseService
             $editFormulaData['cloth_size']         = isset($data['cloth_size']) ? $data['cloth_size'] : '';
             $editFormulaData['formula_json'] = isset($data['formula_json']) ? json_encode($data['formula_json']) : '';
 
-            return $this->entity->update($editFormulaData, ['formula_id' => $data['formula_id']]);
+            return $this->entity->where(['formula_id' => $data['formula_id']])->update($editFormulaData);
         }
     }
 

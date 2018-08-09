@@ -114,7 +114,7 @@ class ExpressFeeService extends BaseService
             $editExpressFeeData['additional_weight'] = isset($data['additional_weight']) ? $data['additional_weight'] : '';
             $editExpressFeeData['additional_fee']    = isset($data['additional_fee']) ? $data['additional_fee'] : '';
 
-            return $this->entity->update($editExpressFeeData, ['express_fee_id' => $data['express_fee_id']]);
+            return $this->entity->where(['express_fee_id' => $data['express_fee_id']])->update($editExpressFeeData);
         }
     }
 

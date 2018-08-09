@@ -111,7 +111,7 @@ class RoleService extends BaseService
             $editRoleData['role_permission'] = isset($data['role_permission']) ? json_encode($data['role_permission']) : '';
             $editRoleData['role_no']         = isset($data['role_no']) ? $data['role_no'] : '';
 
-            return $this->entity->update($editRoleData, ['role_id' => $data['role_id']]);
+            return $this->entity->where(['role_id' => $data['role_id']])->update($editRoleData);
         }
     }
 

@@ -139,7 +139,7 @@ class UserService extends BaseService
             $editUserData['role_id']      = isset($data['role_id']) ? $data['role_id'] : '';
             $editUserData['password']     = $password;
 
-            return $this->entity->update($editUserData, ['user_id' => $data['user_id']]);
+            return $this->entity->where(['user_id' => $data['user_id']])->update($editUserData);
         }
     }
 
@@ -213,7 +213,7 @@ class UserService extends BaseService
                     return ['code' => ['0x002002', 'user']];
                 }
                 $newPassword = crypt($data['new_password'], null);
-                return $this->entity->update(['password' => $newPassword], ['user_id' => $userId]);
+                return $this->entity->where(['user_id' => $userId])->update(['password' => $newPassword]);
             } else {
                 return ['code' => ['0x002001', 'user']];
             }

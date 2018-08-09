@@ -107,7 +107,7 @@ class AttributeService extends BaseService
             $data['attribute_type_id']                    = isset($data['attribute_type_id']) ? $data['attribute_type_id'] : $attributeTypeId;
             $editAttributeTypeData                        = [];
             $editAttributeTypeData['attribute_type_name'] = isset($data['attribute_type_name']) ? $data['attribute_type_name'] : '';
-            return $this->attributeTypeEntity->update($editAttributeTypeData, ['attribute_type_id' => $data['attribute_type_id']]);
+            return $this->attributeTypeEntity->where(['attribute_type_id' => $data['attribute_type_id']])->update($editAttributeTypeData);
         }
     }
 
@@ -211,7 +211,7 @@ class AttributeService extends BaseService
             $editAttributeValueData                         = [];
             $editAttributeValueData['attribute_value_name'] = isset($data['attribute_value_name']) ? $data['attribute_value_name'] : '';
             $editAttributeValueData['attribute_type_id']    = isset($data['attribute_type_id']) ? $data['attribute_type_id'] : '';
-            return $this->attributeValueEntity->update($editAttributeValueData, ['attribute_value_id' => $data['attribute_value_id']]);
+            return $this->attributeValueEntity->where(['attribute_value_id' => $data['attribute_value_id']])->update($editAttributeValueData);
         }
     }
 

@@ -128,7 +128,7 @@ class ProductTypeService extends BaseService
             $editProductTypeData                      = [];
             $editProductTypeData['product_type_name'] = isset($data['product_type_name']) ? $data['product_type_name'] : '';
 
-            return $this->entity->update($editProductTypeData, ['product_type_id' => $data['product_type_id']]);
+            return $this->entity->where(['product_type_id' => $data['product_type_id']])->update($editProductTypeData);
         }
     }
 
