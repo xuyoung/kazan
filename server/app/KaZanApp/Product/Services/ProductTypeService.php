@@ -102,8 +102,13 @@ class ProductTypeService extends BaseService
     public function addProductType($data)
     {
         if (isset($data['product_type_name'])) {
-            $insertProductTypeData = [
-                'product_type_name' => $data['product_type_name'],
+            $productTypeNamePyArray       = convert_pinyin($data['product_type_name']);
+            $data['product_type_name_py'] = isset($productTypeNamePyArray[0]) ? $productTypeNamePyArray[0] : '';
+            $data['product_type_name_zm'] = isset($productTypeNamePyArray[1]) ? $productTypeNamePyArray[1] : '';
+            $insertProductTypeData        = [
+                'product_type_name'    => $data['product_type_name'],
+                'product_type_name_py' => $data['product_type_name_py'],
+                'product_type_name_zm' => $data['product_type_name_zm'],
             ];
 
             return $this->entity->insert($insertProductTypeData);
@@ -124,9 +129,12 @@ class ProductTypeService extends BaseService
     public function editProduct($data, $productTypeId = '')
     {
         if (isset($data['product_type_id'])) {
-            $data['product_type_id']                  = isset($data['product_type_id']) ? $data['product_type_id'] : $productTypeId;
-            $editProductTypeData                      = [];
-            $editProductTypeData['product_type_name'] = isset($data['product_type_name']) ? $data['product_type_name'] : '';
+            $data['product_type_id']                     = isset($data['product_type_id']) ? $data['product_type_id'] : $productTypeId;
+            $productTypeNamePyArray                      = convert_pinyin($data['product_type_name']);
+            $editProductTypeData                         = [];
+            $editProductTypeData['product_type_name']    = isset($data['product_type_name']) ? $data['product_type_name'] : '';
+            $editProductTypeData['product_type_name_py'] = isset($productTypeNamePyArray[0]) ? $productTypeNamePyArray[0] : '';
+            $editProductTypeData['product_type_name_zm'] = isset($productTypeNamePyArray[1]) ? $productTypeNamePyArray[1] : '';
 
             return $this->entity->where(['product_type_id' => $data['product_type_id']])->update($editProductTypeData);
         }

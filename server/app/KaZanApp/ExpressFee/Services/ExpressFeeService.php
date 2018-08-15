@@ -83,7 +83,7 @@ class ExpressFeeService extends BaseService
      */
     public function getExpressFeeListTotal($params)
     {
-        $params['page'] = 0;
+        $params['page']        = 0;
         $params['return_type'] = 'count';
         return $this->getExpressFeeList($params);
     }
@@ -91,12 +91,17 @@ class ExpressFeeService extends BaseService
     public function addExpressFee($data)
     {
         if (isset($data['area']) && isset($data['first_weight']) && isset($data['first_fee'])) {
+            $areaPyArray          = convert_pinyin($data['area']);
+            $data['area_py']      = isset($areaPyArray[0]) ? $areaPyArray[0] : '';
+            $data['area_zm']      = isset($areaPyArray[1]) ? $areaPyArray[1] : '';
             $insertExpressFeeData = [
                 'area'              => $data['area'],
                 'first_weight'      => $data['first_weight'],
                 'first_fee'         => $data['first_fee'],
                 'additional_weight' => isset($data['additional_weight']) ? $data['additional_weight'] : 0,
-                'additional_fee'    => isset($data['additional_fee']) ? $data['additional_fee'] : 0
+                'additional_fee'    => isset($data['additional_fee']) ? $data['additional_fee'] : 0,
+                'area_py'           => $data['area_py'],
+                'area_zm'           => $data['area_zm'],
             ];
 
             return $this->entity->insert($insertExpressFeeData);
@@ -106,13 +111,16 @@ class ExpressFeeService extends BaseService
     public function editExpressFee($data, $expressFeeId = '')
     {
         if (isset($data['express_fee_id']) || !empty($expressFeeId)) {
-            $data['express_fee_id'] = isset($data['express_fee_id']) ? $data['express_fee_id'] : $expressFeeId;
+            $data['express_fee_id']                  = isset($data['express_fee_id']) ? $data['express_fee_id'] : $expressFeeId;
+            $areaPyArray                             = convert_pinyin($data['area']);
             $editExpressFeeData                      = [];
             $editExpressFeeData['area']              = isset($data['area']) ? $data['area'] : '';
             $editExpressFeeData['first_weight']      = isset($data['first_weight']) ? $data['first_weight'] : '';
             $editExpressFeeData['first_fee']         = isset($data['first_fee']) ? $data['first_fee'] : '';
             $editExpressFeeData['additional_weight'] = isset($data['additional_weight']) ? $data['additional_weight'] : '';
             $editExpressFeeData['additional_fee']    = isset($data['additional_fee']) ? $data['additional_fee'] : '';
+            $editExpressFeeData['area_py']           = isset($areaPyArray[0]) ? $areaPyArray[0] : '';
+            $editExpressFeeData['area_zm']           = isset($areaPyArray[1]) ? $areaPyArray[1] : '';
 
             return $this->entity->where(['express_fee_id' => $data['express_fee_id']])->update($editExpressFeeData);
         }

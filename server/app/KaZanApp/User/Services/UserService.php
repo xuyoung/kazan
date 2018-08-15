@@ -56,11 +56,21 @@ class UserService extends BaseService
             'order_by'    => ['user.user_id' => 'ASC'],
             'return_type' => 'array',
         ];
-        $params = array_merge($default, $params);
+        // 是否进行关联查询
+        $withAble = isset($params['fields']) ? true : false;
+        $params   = array_merge($default, $params);
 
         $query = $this->entity->select($params['fields']);
         $query = $query->multiWheres($params['search'])->orders($params['order_by']);
+        if (isset($params['with_trashed']) && $params['with_trashed'] && !$withAble) {
+            $query = $query->with(['userHasOneRole' => function ($query) {
+                $query->withTrashed();
+            }])->withTrashed();
+        } elseif (!$withAble) {
+            $query = $query->with("userHasOneRole");
+        }
         $query = $query->parsePage($params['page'], $params['limit']);
+
         if ($params['return_type'] == 'array') {
             return $query->get()->toArray();
         } else if ($params['return_type'] == 'count') {
@@ -83,7 +93,7 @@ class UserService extends BaseService
      */
     public function getUserListTotal($params)
     {
-        $params['page'] = 0;
+        $params['page']        = 0;
         $params['return_type'] = 'count';
         return $this->getUserList($params);
     }
@@ -102,14 +112,18 @@ class UserService extends BaseService
     public function addUser($data)
     {
         if (isset($data['user_account']) && isset($data['user_name']) && isset($data['role_id'])) {
-            $password = isset($data["password"]) ? $data["password"] : '';
-            $password = crypt($password, null);
-
-            $insertUserData = [
+            $password             = isset($data["password"]) ? $data["password"] : '';
+            $password             = crypt($password, null);
+            $userNamePyArray      = convert_pinyin($data['user_name']);
+            $data['user_name_py'] = isset($userNamePyArray[0]) ? $userNamePyArray[0] : '';
+            $data['user_name_zm'] = isset($userNamePyArray[1]) ? $userNamePyArray[1] : '';
+            $insertUserData       = [
                 'user_account' => $data['user_account'],
                 'password'     => $password,
                 'user_name'    => $data['user_name'],
                 'role_id'      => $data['role_id'],
+                'user_name_py' => $data['user_name_py'],
+                'user_name_zm' => $data['user_name_zm'],
             ];
 
             return $this->entity->insert($insertUserData);
@@ -130,14 +144,17 @@ class UserService extends BaseService
     public function editUser($data, $loginUserId = '')
     {
         if (isset($data['user_id']) || !empty($loginUserId)) {
-            $password = isset($data["password"]) ? $data["password"] : '';
-            $password = crypt($password, null);
-            $data['user_id'] = isset($data['user_id']) ? $data['user_id'] : $loginUserId;
+            $password                     = isset($data["password"]) ? $data["password"] : '';
+            $password                     = crypt($password, null);
+            $userNamePyArray              = convert_pinyin($data['user_name']);
+            $data['user_id']              = isset($data['user_id']) ? $data['user_id'] : $loginUserId;
             $editUserData                 = [];
             $editUserData['user_account'] = isset($data['user_account']) ? $data['user_account'] : '';
             $editUserData['user_name']    = isset($data['user_name']) ? $data['user_name'] : '';
             $editUserData['role_id']      = isset($data['role_id']) ? $data['role_id'] : '';
             $editUserData['password']     = $password;
+            $editUserData['user_name_py'] = isset($userNamePyArray[0]) ? $userNamePyArray[0] : '';
+            $editUserData['user_name_zm'] = isset($userNamePyArray[1]) ? $userNamePyArray[1] : '';
 
             return $this->entity->where(['user_id' => $data['user_id']])->update($editUserData);
         }
@@ -207,7 +224,7 @@ class UserService extends BaseService
     {
         if (isset($data['old_password']) && isset($data['new_password']) && isset($data['confirm_new_password'])) {
             $oldPassword = crypt($data['old_password'], null);
-            $userInfo = $this->getUserAllData($userId);
+            $userInfo    = $this->getUserAllData($userId);
             if ($userInfo->password && $userInfo->password == $oldPassword) {
                 if ($data['new_password'] != $data['confirm_new_password']) {
                     return ['code' => ['0x002002', 'user']];

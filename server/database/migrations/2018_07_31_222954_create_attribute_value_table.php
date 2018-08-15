@@ -19,6 +19,8 @@ class CreateAttributeValueTable extends Migration
             $table->increments('attribute_value_id')->comment('属性值ID');
             $table->integer('attribute_type_id')->comment('属性类别ID');
             $table->string('attribute_value_name', 100)->comment('属性值名称');
+            $table->string('attribute_value_name_py', 50)->comment('属性值名称名称的拼音');
+            $table->string('attribute_value_name_zm', 50)->comment('属性值名称名称的字母');
             $table->timestamps();
         });
     }

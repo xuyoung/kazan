@@ -15,7 +15,6 @@ class FormulaRequest extends Request
                 'formula_json' => 'required|string',
             ),
             'editFormula' => array(
-                'formula_id'   => 'required|integer',
                 'product_id'   => 'required|integer',
                 'cloth_size'   => 'required|string',
                 'formula_json' => 'required|string',

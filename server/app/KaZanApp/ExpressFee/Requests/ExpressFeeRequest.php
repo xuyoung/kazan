@@ -13,7 +13,6 @@ class ExpressFeeRequest extends Request
                 'area' => 'required|string|unique:express_fee,area',
             ),
             'editExpressFee' => array(
-                'express_fee_id'    => 'required|integer',
                 'area'              => 'required|string|unique:express_fee,area,' . $expressFeeId . ',express_fee_id',
                 'first_weight'      => 'required|numeric',
                 'first_fee'         => 'required|numeric',

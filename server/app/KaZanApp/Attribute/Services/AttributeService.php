@@ -1,9 +1,9 @@
 <?php
 namespace App\KaZanApp\Attribute\Services;
 
-use App\KaZanApp\Base\BaseService;
 use App\KaZanApp\Attribute\Entities\AttributeTypeEntity;
 use App\KaZanApp\Attribute\Entities\AttributeValueEntity;
+use App\KaZanApp\Base\BaseService;
 
 /**
  * 属性service类，用来调用所需资源，提供和属性有关的服务。
@@ -93,8 +93,13 @@ class AttributeService extends BaseService
     public function addAttributeType($data)
     {
         if (isset($data['attribute_type_name'])) {
-            $insertAttributeTypeData = [
-                'attribute_type_name' => $data['attribute_type_name'],
+            $attributeTypeNamePyArray       = convert_pinyin($data['attribute_type_name']);
+            $data['attribute_type_name_py'] = isset($attributeTypeNamePyArray[0]) ? $attributeTypeNamePyArray[0] : '';
+            $data['attribute_type_name_zm'] = isset($attributeTypeNamePyArray[1]) ? $attributeTypeNamePyArray[1] : '';
+            $insertAttributeTypeData        = [
+                'attribute_type_name'    => $data['attribute_type_name'],
+                'attribute_type_name_py' => $data['attribute_type_name_py'],
+                'attribute_type_name_zm' => $data['attribute_type_name_zm'],
             ];
 
             return $this->attributeTypeEntity->insert($insertAttributeTypeData);
@@ -104,9 +109,13 @@ class AttributeService extends BaseService
     public function editAttributeType($data, $attributeTypeId = '')
     {
         if (isset($data['attribute_type_id']) || !empty($attributeTypeId)) {
-            $data['attribute_type_id']                    = isset($data['attribute_type_id']) ? $data['attribute_type_id'] : $attributeTypeId;
-            $editAttributeTypeData                        = [];
-            $editAttributeTypeData['attribute_type_name'] = isset($data['attribute_type_name']) ? $data['attribute_type_name'] : '';
+            $data['attribute_type_id']                       = isset($data['attribute_type_id']) ? $data['attribute_type_id'] : $attributeTypeId;
+            $attributeTypeNamePyArray                        = convert_pinyin($data['attribute_type_name']);
+            $editAttributeTypeData                           = [];
+            $editAttributeTypeData['attribute_type_name']    = isset($data['attribute_type_name']) ? $data['attribute_type_name'] : '';
+            $editAttributeTypeData['attribute_type_name_py'] = isset($attributeTypeNamePyArray[0]) ? $attributeTypeNamePyArray[0] : '';
+            $editAttributeTypeData['attribute_type_name_zm'] = isset($attributeTypeNamePyArray[1]) ? $attributeTypeNamePyArray[1] : '';
+
             return $this->attributeTypeEntity->where(['attribute_type_id' => $data['attribute_type_id']])->update($editAttributeTypeData);
         }
     }
@@ -195,9 +204,14 @@ class AttributeService extends BaseService
     public function addAttributeValue($data)
     {
         if (isset($data['attribute_value_name']) && isset($data['attribute_type_id'])) {
-            $insertAttributeValueData = [
-                'attribute_type_id'    => $data['attribute_type_id'],
-                'attribute_value_name' => $data['attribute_value_name'],
+            $attributeValueNamePyArray       = convert_pinyin($data['attribute_value_name']);
+            $data['attribute_value_name_py'] = isset($attributeValueNamePyArray[0]) ? $attributeValueNamePyArray[0] : '';
+            $data['attribute_value_name_zm'] = isset($attributeValueNamePyArray[1]) ? $attributeValueNamePyArray[1] : '';
+            $insertAttributeValueData        = [
+                'attribute_type_id'       => $data['attribute_type_id'],
+                'attribute_value_name'    => $data['attribute_value_name'],
+                'attribute_value_name_py' => $data['attribute_value_name_py'],
+                'attribute_value_name_zm' => $data['attribute_value_name_zm'],
             ];
 
             return $this->attributeValueEntity->insert($insertAttributeValueData);
@@ -207,10 +221,14 @@ class AttributeService extends BaseService
     public function editAttributeValue($data, $attributeValueId = '')
     {
         if (isset($data['attribute_value_id']) || !empty($attributeValueId)) {
-            $data['attribute_value_id']                     = isset($data['attribute_value_id']) ? $data['attribute_value_id'] : $attributeValueId;
-            $editAttributeValueData                         = [];
-            $editAttributeValueData['attribute_value_name'] = isset($data['attribute_value_name']) ? $data['attribute_value_name'] : '';
-            $editAttributeValueData['attribute_type_id']    = isset($data['attribute_type_id']) ? $data['attribute_type_id'] : '';
+            $data['attribute_value_id']                        = isset($data['attribute_value_id']) ? $data['attribute_value_id'] : $attributeValueId;
+            $attributeValueNamePyArray                         = convert_pinyin($data['attribute_value_name']);
+            $editAttributeValueData                            = [];
+            $editAttributeValueData['attribute_value_name']    = isset($data['attribute_value_name']) ? $data['attribute_value_name'] : '';
+            $editAttributeValueData['attribute_type_id']       = isset($data['attribute_type_id']) ? $data['attribute_type_id'] : '';
+            $editAttributeValueData['attribute_value_name_py'] = isset($attributeValueNamePyArray[0]) ? $attributeValueNamePyArray[0] : '';
+            $editAttributeValueData['attribute_value_name_zm'] = isset($attributeValueNamePyArray[1]) ? $attributeValueNamePyArray[1] : '';
+
             return $this->attributeValueEntity->where(['attribute_value_id' => $data['attribute_value_id']])->update($editAttributeValueData);
         }
     }

@@ -70,7 +70,6 @@ class RoleService extends BaseService
         }
     }
 
-
     /**
      * 角色管理--获取角色数量
      *
@@ -84,7 +83,7 @@ class RoleService extends BaseService
      */
     public function getRoleListTotal($params)
     {
-        $params['page'] = 0;
+        $params['page']        = 0;
         $params['return_type'] = 'count';
         return $this->getRoleList($params);
     }
@@ -92,10 +91,15 @@ class RoleService extends BaseService
     public function addRole($data)
     {
         if (isset($data['role_name'])) {
-            $insertRoleData = [
+            $roleNamePyArray      = convert_pinyin($data['role_name']);
+            $data['role_name_py'] = isset($roleNamePyArray[0]) ? $roleNamePyArray[0] : '';
+            $data['role_name_zm'] = isset($roleNamePyArray[1]) ? $roleNamePyArray[1] : '';
+            $insertRoleData       = [
                 'role_name'       => $data['role_name'],
                 'role_permission' => isset($data['role_permission']) ? json_encode($data['role_permission']) : '',
                 'role_no'         => isset($data['role_no']) ? $data['role_no'] : '',
+                'role_name_py'    => $data['role_name_py'],
+                'role_name_zm'    => $data['role_name_zm'],
             ];
 
             return $this->entity->insert($insertRoleData);
@@ -105,11 +109,14 @@ class RoleService extends BaseService
     public function editRole($data, $roleId = '')
     {
         if (isset($data['role_id']) || !empty($roleId)) {
-            $data['role_id'] = isset($data['role_id']) ? $data['role_id'] : $roleId;
+            $roleNamePyArray                 = convert_pinyin($data['role_name']);
+            $data['role_id']                 = isset($data['role_id']) ? $data['role_id'] : $roleId;
             $editRoleData                    = [];
             $editRoleData['role_name']       = isset($data['role_name']) ? $data['role_name'] : '';
             $editRoleData['role_permission'] = isset($data['role_permission']) ? json_encode($data['role_permission']) : '';
             $editRoleData['role_no']         = isset($data['role_no']) ? $data['role_no'] : '';
+            $editRoleData['role_name_py']    = isset($roleNamePyArray[0]) ? $roleNamePyArray[0] : '';
+            $editRoleData['role_name_zm']    = isset($roleNamePyArray[1]) ? $roleNamePyArray[1] : '';
 
             return $this->entity->where(['role_id' => $data['role_id']])->update($editRoleData);
         }

@@ -15,7 +15,6 @@ class UserRequest extends Request
                 'role_id'      => 'required|integer',
             ),
             'editUser' => array(
-                'user_id'      => 'required|integer',
                 'user_name'    => 'required|string',
                 'user_account' => 'required|string|unique:user,user_account,' . $userId . ',user_id',
                 'role_id'      => 'required|integer',

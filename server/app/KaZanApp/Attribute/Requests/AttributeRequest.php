@@ -12,7 +12,6 @@ class AttributeRequest extends Request
                 'attribute_type_name' => 'required|string',
             ),
             'editAttributeType'  => array(
-                'attribute_type_id'   => 'required|integer',
                 'attribute_type_name' => 'required|string',
             ),
             'addAttributeValue'  => array(
@@ -21,7 +20,6 @@ class AttributeRequest extends Request
 
             ),
             'editAttributeValue' => array(
-                'attribute_value_id'   => 'required|integer',
                 'attribute_type_id'    => 'required|integer',
                 'attribute_value_name' => 'required|string',
             ),

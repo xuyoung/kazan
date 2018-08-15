@@ -2,6 +2,7 @@
 namespace App\KaZanApp\Base;
 
 use Illuminate\Database\Eloquent\Model;
+use Schema;
 
 class BaseEntity extends Model
 {
@@ -11,6 +12,76 @@ class BaseEntity extends Model
      */
     protected $guarded = ['id'];
     protected $num     = 1;
+    public $entity;
+
+    /**
+     * Create a new __construct
+     *
+     * @param \Illuminate\Database\Eloquent\Model $entity
+     *
+     * @return void
+     */
+    // public function __construct(Illuminate\Database\Eloquent\Model $entity)
+    // {
+    //     $this->entity = $entity;
+    // }
+
+    /**
+     * 更新数据
+     *
+     * @param array $data 更新数据
+     * @param array $where 更新条件
+     * @param array $filter 过滤字段
+     *
+     * @return bool
+     *
+     * @author qishaobo
+     *
+     * @since  2015-11-05
+     */
+    public function scopeUpdateData($query, array $data, array $where, array $filter = [])
+    {
+        $data = $this->filterUpdateData($data, $filter);
+        try {
+            if (count($where) == count($where, COUNT_RECURSIVE)) {
+                return (bool) $query->where($where)->update($data);
+            } else {
+                return (bool) $query->wheres($where)->update($data);
+            }
+        } catch (\Exception $e) {
+            return sql_error($e->getCode(), $e->getMessage());
+        }
+    }
+
+    /**
+     * 过滤更新数据
+     *
+     * @param array $data 更新数据
+     * @param array $filter 过滤字段
+     *
+     * @return bool
+     *
+     * @author qishaobo
+     *
+     * @since  2015-11-25
+     */
+    public function filterUpdateData(array $data, array $filter = [])
+    {
+        $defaultFilter = ['created_at', 'updated_at', '_method'];
+        $filter        = array_merge($filter, $defaultFilter);
+        $data          = array_except($data, $filter);
+        return array_intersect_key($data, array_flip($this->getTableColumns()));
+    }
+
+    /**
+     * 获取当前表对象的表结构
+     * @return array
+     */
+    public function getTableColumns($tableName = '')
+    {
+        $tableName = empty($tableName) ? $this->entity->getTable() : $tableName;
+        return Schema::getColumnListing($tableName);
+    }
 
     /**
      * 查询条件

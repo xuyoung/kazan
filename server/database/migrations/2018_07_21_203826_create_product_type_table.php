@@ -18,6 +18,8 @@ class CreateProductTypeTable extends Migration
         Schema::create('product_type', function (Blueprint $table) {
             $table->increments('product_type_id')->comment('产品类别ID');
             $table->string('product_type_name', 32)->comment('产品类别名称');
+            $table->string('product_type_name_py', 50)->comment('产品类别名称的拼音');
+            $table->string('product_type_name_zm', 50)->comment('产品类别名称的字母');
             $table->timestamps();
             $table->softDeletes();
         });
